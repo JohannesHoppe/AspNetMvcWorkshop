@@ -7,10 +7,10 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 2. [Anlegen eines ASP.NET Web API Projekts (Routing, Bundling)](#projekt)
 3. [Anlegen von DTOs / POCOs (Geschäftsobjekte)](#poco)
 4. [Einrichten von Entity Framework, Code First](ef)
-5. Repository (CRUD) – Tests!
-6. [Implementierung MVC Controllers / Web API Controllers – Tests!](#controller)
+5. Repository (CRUD) + Tests!
+6. [Implementierung MVC Controllers / Web API Controllers + Tests!](#controller)
 7. Hello World View
-8. Besprechung [AntiRequestForgeryToken]
+8. [Besprechung [AntiRequestForgeryToken]](#AntiForgeryToken)
 9. Vergleich "Daily-Work"-Software mit Trainingsinhalt
 
 
@@ -121,3 +121,57 @@ http://ex.extjs-kochbuch.de/help
 
 Den Quelltext finden Sie hier:
 [CustomerController.cs](https://github.com/JohannesHoppe/ExtJsKochbuch/blob/master/examples/Kochbuch/Controllers/CustomerController.cs)
+
+Man beachte das Attribute Routing, welches in der Web API 2 neu hinzu gekommen ist:
+```
+[Route("api/customer/reset")]
+public HttpResponseMessage GetReset()
+```
+
+
+<a name="AntiForgeryToken"></a>
+## 4. Besprechung [AntiForgeryToken]
+
+Es existiert ein großes Spektrum an Angriffsszenarien im Web.
+Eines davon ist der CSRF-Angriff (Cross-Site Request Forgery). Es geht hier dabei, den Browser eines Nutzers zu manipulieren, so das unbedacht eine Aktion ausgeführt wird, die eigentlich nicht gewünscht war. Folgender Text beschreibt das Szenario:
+
+[![Screenshot](images/hakin9.jpg)](http://blog.johanneshoppe.de/wp-content/uploads/2012/09/Sicherheit-von-Web-Anwendungen.pdf)
+
+Würde eine Administrator z.B. eine beliebige Seite im Internet ansurfen, die folgendes HTML-Fragment beinhaltet, so würde dies den Controller ungewollt ausnutzen.
+
+```html
+<body onload="document.getElementById('form1').submit()">
+    <form id="form1" action="http://example.com/Home/CustomerUpdate" method="post">
+        <input name="Mail" value="UNWANTED VALUE" />
+    </form>
+</body>
+```
+
+Das AntiForgeryToken platziert einen Cookie namens "__RequestVerificationToken". Er beinhaltet einen zufälligen Wert. Dieser Wert muss ebenso im Formular versendet werden.
+
+```html
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
+```
+
+erzeugt folgenden Output:
+
+```html
+<input name="__RequestVerificationToken" type="hidden" value="GEHEIM" />
+```
+
+Der Controller kann nun den Wert aus dem Cookie mit dem Wert aus dem Formular vergleichen:
+```csharp
+[ValidateAntiForgeryToken]
+public ActionResult CustomerUpdate()
+{
+}
+```
+
+Stimmen beide Werte überein, dann kann es sich nicht um einen gefälschten Aufruf handelt.
+
+Das ValidateAntiForgeryToken wurde für ASP.NET MVC bereits von Microsoft implementiert.
+Für die WebAPI kann man folgenden Code verwenden:
+http://stackoverflow.com/questions/11476883/web-api-and-validateantiforgerytoken

@@ -17,7 +17,7 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 5. Repository (CRUD) – Tests!
 6. Implementierung MVC Controllers / Web API Controllers – Tests!
 7. Hello World View
-8. Besprechung [AntiRequestForgeryToken]
+8. Besprechung [AntiForgeryToken]
 9. Vergleich "Daily-Work"-Software mit Trainingsinhalt
 
 [Weiter zu Tag 1](Tag_1.html)

@@ -26,11 +26,11 @@
 <li>Grundlagen, Besprechung der Fragen zur Vorbereitung</li>
 <li><a href="#projekt">Anlegen eines ASP.NET Web API Projekts (Routing, Bundling)</a></li>
 <li><a href="#poco">Anlegen von DTOs / POCOs (Geschäftsobjekte)</a></li>
-<li>Einrichten von Entity Framework, Code First – Besprechung: Mockbarer Context (DbContext)</li>
-<li>Repository (CRUD) – Tests!</li>
-<li>Implementierung MVC Controllers / Web API Controllers – Tests!</li>
+<li><a href="ef">Einrichten von Entity Framework, Code First</a></li>
+<li>Repository (CRUD) + Tests!</li>
+<li><a href="#controller">Implementierung MVC Controllers / Web API Controllers + Tests!</a></li>
 <li>Hello World View</li>
-<li>Besprechung [AntiRequestForgeryToken]</li>
+<li><a href="#AntiForgeryToken">Besprechung [AntiRequestForgeryToken]</a></li>
 <li>Vergleich &quot;Daily-Work&quot;-Software mit Trainingsinhalt</li>
 </ol>
 <p><a name="projekt"></a></p>
@@ -54,13 +54,74 @@
 <h2 id="3-anlegen-von-dtos-pocos-gesch-ftsobjekte-">3. Anlegen von DTOs / POCOs (Geschäftsobjekte)</h2>
 <p>Wir werden einfache &quot;Data Transfer Objekte&quot; (DTO) bzw. &quot;Plain Old CLR Objects&quot; (POCO) verwenden. Hiermit können wir die Daten unserer &quot;Geschäftslogik&quot; halten. Es gibt verschiedene Architektur-Stile, bei vielen sollten &quot;Geschäftsobjekte&quot; nicht nur Daten sondern auch Methoden besitzen. Für eine einfache Anwendung ist es absolut ausreichend, nicht zwischen &quot;Entitäten&quot; (ein Begriff des<a href="http://dddcommunity.org/"> Domain Driven Designs</a> von Eric Evans) und zwischen DTOs / POCOs zu unterscheiden. Wir verwenden die POCOs direkt und hauchen Ihnen später etwas Leben ein - mithilfe des Entity Frameworks. Es ist aber wichtig zu erkennen, das wir dadurch ein &quot;<strong>Anemic</strong> domain model&quot; erstellen. Dieses gilt als Anti-Pattern im Sinne des Domain Driven Designs. Die Verwendung des Entity Frameworks garantiert übrigens nicht, das wir nun Entitäten im Sinne von Domain Driven Design besitzen. Der Begriff ist hier doppeldeutig.</p>
 <p>Ein sehr einfaches POCO kann z.B. so ausschauen:</p>
-<pre><code class="lang-cs">public class Customer
+<pre><code class="lang-csharp">public class Customer
 {
     public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Mail { get; set; }
 }</code></pre>
+<p><a name="ef"></a></p>
+<h2 id="4-einrichten-von-entity-framework-code-first">4. Einrichten von Entity Framework, Code First</h2>
+<p>Als Data Access Layer (DAL) verwenden wir das Entitiy Framework, dessen in frühere Versionen Teil des .NET Framework sind. Die neueste Versionen sind nun direkt per <a href="https://www.nuget.org/packages/entityframework">Nuget</a> verfügbar. </p>
+<p>Um mit dem Code-First Ansatz zu starten, ist es notwendig eine Klasse zu erstellen, welche von System.Data.Entity.DbContext erbt. Hier geben wir alle vom EF zu berücksichtigen POCOs an. Der Rest geschieht weitgehend über den &quot;Convention over Configuration&quot; Ansatz.</p>
+<pre><code class="lang-csharp">public class MyContext : DbContext 
+{ 
+    public DbSet&lt;Customer&gt; Customers { get; set; } 
+}</code></pre>
+<p>Leider ist diese einfache Variante schwer zu testen, daher sollten wir folgenden mockbaren Context bevorzugen:</p>
+<pre><code class="lang-csharp">public class MyContext : DbContext, IMyContext
+{ 
+    public IDbSet&lt;Customer&gt; Customers { get; set; } 
+}
+
+public interface IMyContext
+{
+    IDbSet&lt;Customer&gt; Customers { get; set; }
+
+    int SaveChanges();
+}</code></pre>
+<p>Das originale DbSet implementiert bereits das Interface IDbSet.<br>Als Ersatz bei Unit-Tests empfehle ich zum Beispiel folgendes In-Memory-Dbset:<br><a href="https://www.nuget.org/packages/FakeDbSet/">https://www.nuget.org/packages/FakeDbSet/</a></p>
+<p>Zusammen mit dem Mocking-Framework <a href="https://github.com/Moq/moq4">Moq</a> können wir so sehr leicht IDbSet (durch FakeDbSet) und IMyContext (durch Moq) wie folgt ersetzen:</p>
+<pre><code class="lang-csharp">InMemoryDbSet&lt;Customer&gt; inMemoryDbSet = new InMemoryDbSet&lt;Customer&gt;(true);
+
+var mockedContext = new Mock&lt;IMyContext&gt;();
+mockedContext.Setup(m =&gt; m.Customers).Returns(inMemoryDbSet);
+repository = new CustomerRepository(mockedContext.Object);</code></pre>
+<p>Ein weiteres Beispiel findet sich <a href="https://github.com/a-h/FakeDbSet/blob/master/Examples/Example.BusinessLogicTest/FakeDatabase.cs">hier</a>, dort wird ein Ersatz des Kontext gezeigt, welcher leicht ohne zweites Mocking-Framework auskommt.</p>
+<p><a name="controller"></a></p>
+<h2 id="6-implementierung-mvc-controllers-web-api-controllers">6. Implementierung MVC Controllers / Web API Controllers</h2>
+<p>Wir werden einen MVC Controller sowie einen Web API Controller anlegen, dies wird durch das Tooling von Visual Studio sehr gut unterstützt. </p>
+<p>Eine auf Azure gehostete Version des Kunden-Controllers (Web API) sehen sie hier:<br><a href="http://ex.extjs-kochbuch.de/api/customer">http://ex.extjs-kochbuch.de/api/customer</a></p>
+<p>Der Controller wird durch folgende <a href="http://www.asp.net/web-api/overview/creating-web-apis/creating-api-help-pages">Help Page</a> beschrieben:<br><a href="http://ex.extjs-kochbuch.de/help">http://ex.extjs-kochbuch.de/help</a></p>
+<p>Den Quelltext finden Sie hier:<br><a href="https://github.com/JohannesHoppe/ExtJsKochbuch/blob/master/examples/Kochbuch/Controllers/CustomerController.cs">CustomerController.cs</a></p>
+<p>Man beachte das Attribute Routing, welches in der Web API 2 neu hinzu gekommen ist:</p>
+<pre><code>[Route(&quot;api/customer/reset&quot;)]
+public HttpResponseMessage GetReset()</code></pre>
+<p><a name="AntiForgeryToken"></a></p>
+<h2 id="4-besprechung-antiforgerytoken-">4. Besprechung [AntiForgeryToken]</h2>
+<p>Es existiert ein großes Spektrum an Angriffsszenarien im Web.<br>Eines davon ist der CSRF-Angriff (Cross-Site Request Forgery). Es geht hier dabei, den Browser eines Nutzers zu manipulieren, so das unbedacht eine Aktion ausgeführt wird, die eigentlich nicht gewünscht war. Folgender Text beschreibt das Szenario:</p>
+<p><a href="http://blog.johanneshoppe.de/wp-content/uploads/2012/09/Sicherheit-von-Web-Anwendungen.pdf"><img src="images/hakin9.jpg" alt="Screenshot"></a></p>
+<p>Würde eine Administrator z.B. eine beliebige Seite im Internet ansurfen, die folgendes HTML-Fragment beinhaltet, so würde dies den Controller ungewollt ausnutzen.</p>
+<pre><code class="lang-html">&lt;body onload=&quot;document.getElementById(&#39;form1&#39;).submit()&quot;&gt;
+    &lt;form id=&quot;form1&quot; action=&quot;http://example.com/Home/CustomerUpdate&quot; method=&quot;post&quot;&gt;
+        &lt;input name=&quot;Mail&quot; value=&quot;UNWANTED VALUE&quot; /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;</code></pre>
+<p>Das AntiForgeryToken platziert einen Cookie namens &quot;__RequestVerificationToken&quot;. Er beinhaltet einen zufälligen Wert. Dieser Wert muss ebenso im Formular versendet werden.</p>
+<pre><code class="lang-html">@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}</code></pre>
+<p>erzeugt folgenden Output:</p>
+<pre><code class="lang-html">&lt;input name=&quot;__RequestVerificationToken&quot; type=&quot;hidden&quot; value=&quot;GEHEIM&quot; /&gt;</code></pre>
+<p>Der Controller kann nun den Wert aus dem Cookie mit dem Wert aus dem Formular vergleichen:</p>
+<pre><code class="lang-csharp">[ValidateAntiForgeryToken]
+public ActionResult CustomerUpdate()
+{
+}</code></pre>
+<p>Stimmen beide Werte überein, dann kann es sich nicht um einen gefälschten Aufruf handelt.</p>
+<p>Das ValidateAntiForgeryToken wurde für ASP.NET MVC bereits von Microsoft implementiert.<br>Für die WebAPI kann man folgenden Code verwenden:<br><a href="http://stackoverflow.com/questions/11476883/web-api-and-validateantiforgerytoken">http://stackoverflow.com/questions/11476883/web-api-and-validateantiforgerytoken</a></p>
 
 </body>
 </html>
