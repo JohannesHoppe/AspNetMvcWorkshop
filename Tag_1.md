@@ -67,9 +67,22 @@ Um mit dem Code-First Ansatz zu starten, ist es notwendig eine Klasse zu erstell
 ```csharp
 public class MyContext : DbContext 
 { 
+    public MyContext() 
+        : base("MyContext")
+    {
+    }
+
     public DbSet<Customer> Customers { get; set; } 
 }
 
+```
+
+Natürlich darf man einen passenden Connection-String nicht vergessen:
+
+```xml
+<connectionStrings>
+    <add name="MyContext" connectionString="Data Source=(local);Initial Catalog=TestDb;Integrated Security=SSPI;" providerName="System.Data.SqlClient" />
+</connectionStrings>
 ```
 
 Leider ist diese einfache Variante schwer zu testen, daher sollten wir folgenden mockbaren Context bevorzugen:
@@ -78,6 +91,11 @@ Leider ist diese einfache Variante schwer zu testen, daher sollten wir folgenden
 ```csharp
 public class MyContext : DbContext, IMyContext
 { 
+    public MyContext() 
+        : base("MyContext")
+    {
+    }
+
     public IDbSet<Customer> Customers { get; set; } 
 }
 

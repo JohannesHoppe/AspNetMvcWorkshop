@@ -20,7 +20,7 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 8. Besprechung [AntiForgeryToken]
 9. Vergleich "Daily-Work"-Software mit Trainingsinhalt
 
-[Weiter zu Tag 1](Tag_1.html)
+[Weiter zu Tag 1](Tag_1.md)
 
 
 ### 2. Tag – JavaScript
