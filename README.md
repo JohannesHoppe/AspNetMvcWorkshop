@@ -11,7 +11,7 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 
 ### 1. Tag – C#/.NET / ASP.NET MVC
 1. Grundlagen, Besprechung der Fragen zur Vorbereitung
-2. Anlegen eines ASP.NET Web API Project (Routing, Bundling)
+2. Anlegen eines ASP.NET Web API Projekts (Routing, Bundling)
 3. Anlegen von DTOs / POCOs (Geschäftsobjekte)
 4. Einrichten von Entity Framework, Code First – Besprechung: Mockbarer Context (DbContext)
 5. Repository (CRUD) – Tests!
@@ -19,6 +19,8 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 7. Hello World View
 8. Besprechung [AntiRequestForgeryToken]
 9. Vergleich "Daily-Work"-Software mit Trainingsinhalt
+
+[Weiter zu Tag 1](Tag_1.html)
 
 
 ### 2. Tag – JavaScript
