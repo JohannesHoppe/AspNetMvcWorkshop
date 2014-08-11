@@ -20,7 +20,7 @@ namespace Dashboard.Models
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-        public DbSet<Gutachter> Gutachter { get; set; }
-        public DbSet<Gutachten> Gutachten { get; set; }
+        public IDbSet<Gutachter> Gutachter { get; set; }
+        public IDbSet<Gutachten> Gutachten { get; set; }
     }
 }
