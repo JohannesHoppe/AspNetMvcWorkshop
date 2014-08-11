@@ -15,7 +15,7 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 3. Refactoring eines bestehenden JavaScript-Codes – Ziel: ein Modul
 4. [Testing des Moduls mit Jasmine](#jasmine)
 5. Daten holen per Ajax
-6. Besprechung Cross-Site-Scripting
+6. [Security: Besprechung Cross-Site-Scripting](#XSS)
 
 
 
@@ -162,7 +162,7 @@ requirejs.config({
 Here we define paths and file names if the file does not match the convention. There is also a "shim" defined, that indicates that the module "knockout" is dependent upon "jquery". Require.js will make sure, that jQuery will be loaded before Knockout. Shims are also often used to point to a global variable that and AMD-ignorant script will create. (via [exports](http://requirejs.org/docs/api.html#config-shim))
 
 <a name="jasmine"></a>
-### 4. Testing des Moduls mit Jasmine
+## 4. Testing des Moduls mit Jasmine
 
 Wir verwenden Jasmine, das bekannteste JavaScript Unit-Test Framework. Folgende Datei bietet einen schnellen Einstieg, da keine externer Testrunner notwendig ist. (wir könnten auch den [Karma-Testrunner](http://karma-runner.github.io/0.12/index.html) oder den Resharper verwenden)
 
@@ -213,3 +213,13 @@ Wir verwenden Jasmine, das bekannteste JavaScript Unit-Test Framework. Folgende 
 ```
 
 Die Datei und die Tests finden Sie im ["jasmine" Ordner](./jasmine).
+
+
+<a name="XSS"></a>
+## 6. Security: Besprechung Cross-Site-Scripting
+
+
+[![Logo](images/
+security_logo.png)](http://johanneshoppe.github.io/HTML5Security/)
+
+

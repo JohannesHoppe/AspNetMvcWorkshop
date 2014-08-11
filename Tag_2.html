@@ -35,7 +35,7 @@
 <li>Refactoring eines bestehenden JavaScript-Codes – Ziel: ein Modul</li>
 <li><a href="#jasmine">Testing des Moduls mit Jasmine</a></li>
 <li>Daten holen per Ajax</li>
-<li>Besprechung Cross-Site-Scripting</li>
+<li><a href="#XSS">Security: Besprechung Cross-Site-Scripting</a></li>
 </ol>
 <p><a name="bestpractices"></a></p>
 <h2 id="1-javascript-best-practices">1. JavaScript Best Practices</h2>
@@ -135,7 +135,7 @@
 });</code></pre>
 <p>Here we define paths and file names if the file does not match the convention. There is also a &quot;shim&quot; defined, that indicates that the module &quot;knockout&quot; is dependent upon &quot;jquery&quot;. Require.js will make sure, that jQuery will be loaded before Knockout. Shims are also often used to point to a global variable that and AMD-ignorant script will create. (via <a href="http://requirejs.org/docs/api.html#config-shim">exports</a>)</p>
 <p><a name="jasmine"></a></p>
-<h3 id="4-testing-des-moduls-mit-jasmine">4. Testing des Moduls mit Jasmine</h3>
+<h2 id="4-testing-des-moduls-mit-jasmine">4. Testing des Moduls mit Jasmine</h2>
 <p>Wir verwenden Jasmine, das bekannteste JavaScript Unit-Test Framework. Folgende Datei bietet einen schnellen Einstieg, da keine externer Testrunner notwendig ist. (wir könnten auch den <a href="http://karma-runner.github.io/0.12/index.html">Karma-Testrunner</a> oder den Resharper verwenden)</p>
 <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -181,6 +181,10 @@
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 <p>Die Datei und die Tests finden Sie im <a href="./jasmine">&quot;jasmine&quot; Ordner</a>.</p>
+<p><a name="XSS"></a></p>
+<h2 id="6-security-besprechung-cross-site-scripting">6. Security: Besprechung Cross-Site-Scripting</h2>
+<p><a href="http://johanneshoppe.github.io/HTML5Security/"><img src="images/
+security_logo.png" alt="Logo"></a></p>
 
 </body>
 </html>

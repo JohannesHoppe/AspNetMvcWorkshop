@@ -17,7 +17,7 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 5. Repository (CRUD) – Tests!
 6. Implementierung MVC Controllers / Web API Controllers – Tests!
 7. Hello World View
-8. Besprechung [AntiForgeryToken]
+8. Security: Besprechung [AntiForgeryToken]
 9. Vergleich "Daily-Work"-Software mit Trainingsinhalt
 
 [» Weiter zu Tag 1](Tag_1.md)
@@ -31,7 +31,7 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 3. Refactoring eines bestehenden JavaScript-Codes – Ziel: ein Modul
 4. Testing des Moduls mit Jasmine
 5. Daten holen per Ajax
-6. Besprechung Cross-Site-Scripting
+6. Security: Besprechung Cross-Site-Scripting
 
 [» Weiter zu Tag 2](Tag_2.md)
 

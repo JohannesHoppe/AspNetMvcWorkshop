@@ -30,7 +30,7 @@
 <li>Repository (CRUD) + Tests!</li>
 <li><a href="#controller">Implementierung MVC Controllers / Web API Controllers + Tests!</a></li>
 <li>Hello World View</li>
-<li><a href="#AntiForgeryToken">Besprechung [AntiRequestForgeryToken]</a></li>
+<li><a href="#AntiForgeryToken">Security: Besprechung [AntiRequestForgeryToken]</a></li>
 <li>Vergleich &quot;Daily-Work&quot;-Software mit Trainingsinhalt</li>
 </ol>
 <p><a name="projekt"></a></p>
@@ -67,11 +67,25 @@
 <p>Um mit dem Code-First Ansatz zu starten, ist es notwendig eine Klasse zu erstellen, welche von System.Data.Entity.DbContext erbt. Hier geben wir alle vom EF zu berücksichtigen POCOs an. Der Rest geschieht weitgehend über den &quot;Convention over Configuration&quot; Ansatz.</p>
 <pre><code class="lang-csharp">public class MyContext : DbContext 
 { 
+    public MyContext() 
+        : base(&quot;MyContext&quot;)
+    {
+    }
+
     public DbSet&lt;Customer&gt; Customers { get; set; } 
 }</code></pre>
+<p>Natürlich darf man einen passenden Connection-String nicht vergessen:</p>
+<pre><code class="lang-xml">&lt;connectionStrings&gt;
+    &lt;add name=&quot;MyContext&quot; connectionString=&quot;Data Source=(local);Initial Catalog=TestDb;Integrated Security=SSPI;&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;
+&lt;/connectionStrings&gt;</code></pre>
 <p>Leider ist diese einfache Variante schwer zu testen, daher sollten wir folgenden mockbaren Context bevorzugen:</p>
 <pre><code class="lang-csharp">public class MyContext : DbContext, IMyContext
 { 
+    public MyContext() 
+        : base(&quot;MyContext&quot;)
+    {
+    }
+
     public IDbSet&lt;Customer&gt; Customers { get; set; } 
 }
 
@@ -99,7 +113,7 @@ repository = new CustomerRepository(mockedContext.Object);</code></pre>
 <pre><code>[Route(&quot;api/customer/reset&quot;)]
 public HttpResponseMessage GetReset()</code></pre>
 <p><a name="AntiForgeryToken"></a></p>
-<h2 id="4-besprechung-antiforgerytoken-">4. Besprechung [AntiForgeryToken]</h2>
+<h2 id="8-besprechung-antiforgerytoken-">8. Besprechung [AntiForgeryToken]</h2>
 <p>Es existiert ein großes Spektrum an Angriffsszenarien im Web.<br>Eines davon ist der CSRF-Angriff (Cross-Site Request Forgery). Es geht hier dabei, den Browser eines Nutzers zu manipulieren, so das unbedacht eine Aktion ausgeführt wird, die eigentlich nicht gewünscht war. Folgender Text beschreibt das Szenario:</p>
 <p><a href="http://blog.johanneshoppe.de/wp-content/uploads/2012/09/Sicherheit-von-Web-Anwendungen.pdf"><img src="images/hakin9.jpg" alt="Screenshot"></a></p>
 <p>Würde eine Administrator z.B. eine beliebige Seite im Internet ansurfen, die folgendes HTML-Fragment beinhaltet, so würde dies den Controller ungewollt ausnutzen.</p>
