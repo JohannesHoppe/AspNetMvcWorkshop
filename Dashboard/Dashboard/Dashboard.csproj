@@ -164,6 +164,9 @@
     <Compile Include="Models\Gutachten.cs" />
     <Compile Include="Models\Gutachter.cs" />
     <Compile Include="Models\DashboardContext.cs" />
+    <Compile Include="Models\GutachterRepository.cs" />
+    <Compile Include="Models\IDashboardContext.cs" />
+    <Compile Include="Models\IGutachterRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

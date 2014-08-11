@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Dashboard.Models
 {
-    public class DashboardContext : DbContext
+    public class DashboardContext : DbContext, IDashboardContext
     {
         public DashboardContext()
             : base("DashboardContext")

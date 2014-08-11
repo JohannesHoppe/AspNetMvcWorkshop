@@ -13,26 +13,13 @@ namespace Dashboard.Controllers
         // GET api/values
         public IEnumerable<Gutachter> Get()
         {
-            var hans = new Gutachter
-                       {
-                           Vorname = "Hans",
-                           Nachname = "Müller"
-                       };
-
-            var context = new DashboardContext();
-            context.Gutachter.Add(hans);
-            context.SaveChanges();
-
-            return new[] { hans };
+            return null;
         }
 
         // GET api/values/5
         public dynamic Get(int id)
         {
-            return new
-                   {
-                       Test = DateTime.Now
-                   };
+            return null;
         }
 
         // POST api/values
