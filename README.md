@@ -20,7 +20,7 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 8. Besprechung [AntiForgeryToken]
 9. Vergleich "Daily-Work"-Software mit Trainingsinhalt
 
-[Weiter zu Tag 1](Tag_1.md)
+[» Weiter zu Tag 1](Tag_1.md)
 
 
 ### 2. Tag – JavaScript
@@ -32,6 +32,8 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 4. Testing des Moduls mit Jasmine
 5. Daten holen per Ajax
 6. Besprechung Cross-Site-Scripting
+
+[» Weiter zu Tag 2](Tag_2.md)
 
 
 ### 3. Tag – Kendo UI

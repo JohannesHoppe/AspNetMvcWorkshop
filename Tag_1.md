@@ -148,7 +148,7 @@ public HttpResponseMessage GetReset()
 
 
 <a name="AntiForgeryToken"></a>
-## 4. Besprechung [AntiForgeryToken]
+## 8. Besprechung [AntiForgeryToken]
 
 Es existiert ein großes Spektrum an Angriffsszenarien im Web.
 Eines davon ist der CSRF-Angriff (Cross-Site Request Forgery). Es geht hier dabei, den Browser eines Nutzers zu manipulieren, so das unbedacht eine Aktion ausgeführt wird, die eigentlich nicht gewünscht war. Folgender Text beschreibt das Szenario:
