@@ -9,7 +9,7 @@ namespace Dashboard.Models
     {
         int Create(string vorname, string nachname, string mail);
 
-        void Update(string vorname, string nachname, string mail);
+        void Update(Gutachter gutachter);
 
         Gutachter Read(int id);
 

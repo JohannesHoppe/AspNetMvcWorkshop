@@ -14,7 +14,7 @@ namespace Dashboard.Models
             throw new System.NotImplementedException();
         }
 
-        public void Update(string vorname, string nachname, string mail)
+        public void Update(Gutachter gutachter)
         {
             throw new System.NotImplementedException();
         }
