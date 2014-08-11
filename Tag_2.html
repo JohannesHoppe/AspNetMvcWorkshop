@@ -23,16 +23,165 @@
 <p>Ihr Trainer: <a href="http://www.haushoppe-its.de">Johannes Hoppe</a></p>
 <h2 id="tag-2-agenda">Tag 2 - Agenda</h2>
 <ol>
-<li>JavaScript Best Practices – häufige Fehler vermeiden, bewährtes verwenden<br> a. Vermeiden von globals, eval, etc.<br> b. Modularer Code</li>
-<li>Schnelleinstieg require.js</li>
+<li><a href="#bestpractices">JavaScript Best Practices – häufige Fehler vermeiden, bewährtes verwenden</a><br> a. Vermeiden von globals, eval, etc.<br> b. Modularer Code</li>
+<li><a href="#require">Require.js  und modularer Code</a><ol>
+<li><a href="#modules">Modules</a></li>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#introduction">Dependency Management</a></li>
+<li><a href="#load">Loading of dependencies</a></li>
+<li><a href="#configuration">Configuration</a></li>
+</ol>
+</li>
 <li>Refactoring eines bestehenden JavaScript-Codes – Ziel: ein Modul</li>
-<li>Testing des Moduls mit Jasmine</li>
+<li><a href="#jasmine">Testing des Moduls mit Jasmine</a></li>
 <li>Daten holen per Ajax</li>
 <li>Besprechung Cross-Site-Scripting</li>
 </ol>
 <p><a name="bestpractices"></a></p>
-<h2 id="2-javascript-best-practices">2. JavaScript Best Practices</h2>
-<iframe src="http://johanneshoppe.github.com/JsBestPractices/" width="100%" height="600" frameborder="0"></iframe>
+<h2 id="1-javascript-best-practices">1. JavaScript Best Practices</h2>
+<p><a href="http://johanneshoppe.github.com/JsBestPractices"><img src="images/best_practices_logo.png" alt="Logo"></a></p>
+<p><a name="require"></a></p>
+<h2 id="2-require-js-und-modularer-code">2. Require.js und modularer Code</h2>
+<p>Javascript framekworks need some glue to fit together. Require.js is exactly that glue. Using a modular script loader like require.js will improve the speed and quality of your code. Lets see how.</p>
+<p>All these technologies need some glue to fit together. Require.js is exactly that glue. Using a modular script loader like require.js will improve the speed and quality of your code, too.</p>
+<p><a name="modules"></a></p>
+<h3 id="2-1-modules">2.1. Modules</h3>
+<p>For our context a modules is structure used to encapsulate methods and attributes to avoid polluting the global namespace.</p>
+<p>We will use the <a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript">revealing module pattern</a> because its widely adopted and very easy to understand. JavaScript doesn’t have special syntax for namespaces or packages, but the module pattern allows us to write decoupled<br>pieces of code, which can be treated as black boxes. The module pattern is a combination of several patterns</p>
+<ul>
+<li>Namespaces</li>
+<li>Immediate functions</li>
+<li>Private and public members</li>
+<li>Declaring dependencies</li>
+</ul>
+<p>During the day Johannes will explain all of these topics in detail, but for now this snipped shows a typical module. </p>
+<pre><code class="lang-js">var myModule = function () {
+
+    var _name = &quot;Johannes&quot;;
+
+    function greetings() {
+        console.log(&quot;Hello &quot; + _name);
+    }
+
+    function setName(name) {
+        _name = name;
+    }
+
+    return {
+        setName: setName,
+        greetings: greetings
+    };
+}();</code></pre>
+<p><a name="dependencies"></a></p>
+<h3 id="2-2-dependencies">2.2. Dependencies</h3>
+<p>For our context a dependency is a piece of JavaScript code on which another piece of JavaScript somehow depends on. The existence of such a dependency is therefore required to get the complete system running. In most cases a method or value of such a dependency is going to be accessed. In other cases there might be no direct access to the required piece of software, but there could be a hidden dependency where the systems state is changed as required.</p>
+<p>The above module might have a dependency to jQuery. A simple way to make this dependency visible is the following construct. </p>
+<pre><code class="lang-js">var myModule = function ($) {
+
+    var _name = &quot;Johannes&quot;;
+
+    function greetings() {
+        $(&#39;#output&#39;).text(&quot;Hello &quot; + _name);
+    }
+
+    return {
+        greetings: greetings
+    };
+}(window.jQuery);</code></pre>
+<p><a name="management"></a></p>
+<h3 id="2-3-dependencies-management">2.3. Dependencies Management</h3>
+<p>We have seen a naive way to handle dependencies. But things are getting complicated in practice.<br>Working with dependencies means loading of JavaScript code...</p>
+<ul>
+<li>... in the right order.</li>
+<li>... at the right time.</li>
+<li>... at the right speed.</li>
+</ul>
+<p>These requirements can&#39;t be resolved with simple script includes like:<br><code>&lt;script src=&quot;myscript.js&quot;&gt;&lt;/script&gt;</code><br>It is not clear which other files need to be loaded in before. It&#39;s also not clear when this file would be required. It might be totally useless, nobody knows. And last but not least, this file will slow down the applications first run. Usually an application is ready to start, when the browser fires <code>DOMContentLoaded</code>. But DOMContentLoaded waits for the full HTML and scripts, and then triggers. If the file has no interaction with the DOM, this waiting time is useless.</p>
+<p>Require.js takes a different approach to script loading than traditional &lt;script&gt; tags. Its goal is to encourage modular code. Require.js is a JavaScript file and module loader, capable of loading modules defined in the AMD (Asynchronous Module Definition) format and their dependencies. The asynchronous design makes AMD well suited for a browser environment. Today it&#39;s embraced by projects including Dojo, MooTools, Firebug or jQuery. The format is easy to learn since it only has two keywords: <code>define</code> and <code>require</code>.</p>
+<p>Therefore require.js is easy to introduce to a project that is already using a module pattern. Only small changes on our module are necessary:</p>
+<pre><code class="lang-js">define([&#39;jquery&#39;], function ($) {
+
+    var _name = &quot;Johannes&quot;;
+
+    function greetings() {
+        $(&#39;#output&#39;).text(&quot;Hello &quot; + _name);
+    }
+
+    return {
+        greetings: greetings
+    };
+});</code></pre>
+<p>The file should get the file name &quot;myModule.js&quot;.</p>
+<p><a name="load"></a></p>
+<h3 id="2-4-loading-of-dependencies">2.4. Loading of dependencies</h3>
+<p>It is considered as best-practice to place to <a href="http://developer.yahoo.com/performance/rules.html#js_bottom">the bottom of a page</a>. But just JavaScript code at the bottom of the page won&#39;t make things that much better. That’s why we will should load our dependencies with require.js.</p>
+<p>The module is defined but nobody uses it. Let&#39;s create a counterpart. The following snipped loads the module &quot;myModule&quot;. By convention, the name of the module (the so-called <strong>module ID</strong>) should be equal to the file without the .js file ending.</p>
+<pre><code class="lang-js">require([&#39;myModule&#39;], function(m) { 
+    m.greetings(); 
+});</code></pre>
+<p>Here we load the module &quot;myModule&quot; and decide to name the corresponding parameter in the anonymous function to a shorter version &quot;m&quot;. We then call the method &quot;greetings&quot; of the &quot;myModule&quot; module. </p>
+<p><a name="configuration"></a></p>
+<h3 id="2-5-configuration">2.5. Configuration</h3>
+<p>In a perfect world wouldn&#39;t need setup files. But often we have to deal with version numbers in files, obscured paths or files that don’t implement the AMD pattern. For all these proposes require.js can be configured. It’s a good idea to put that configuration into a new file, e.g. called require.config.js:</p>
+<pre><code class="lang-javascript">requirejs.config({
+    baseUrl: &quot;Scripts&quot;,
+    paths: {
+        &#39;jquery&#39;: &#39;jquery-2.0.3&#39;,
+        &#39;knockout&#39;: &#39;knockout-2.3.0&#39;
+    },
+    shim: {
+        &#39;knockout&#39;: { deps: [&#39;jquery&#39;] }
+    }
+});</code></pre>
+<p>Here we define paths and file names if the file does not match the convention. There is also a &quot;shim&quot; defined, that indicates that the module &quot;knockout&quot; is dependent upon &quot;jquery&quot;. Require.js will make sure, that jQuery will be loaded before Knockout. Shims are also often used to point to a global variable that and AMD-ignorant script will create. (via <a href="http://requirejs.org/docs/api.html#config-shim">exports</a>)</p>
+<p><a name="jasmine"></a></p>
+<h3 id="4-testing-des-moduls-mit-jasmine">4. Testing des Moduls mit Jasmine</h3>
+<p>Wir verwenden Jasmine, das bekannteste JavaScript Unit-Test Framework. Folgende Datei bietet einen schnellen Einstieg, da keine externer Testrunner notwendig ist. (wir könnten auch den <a href="http://karma-runner.github.io/0.12/index.html">Karma-Testrunner</a> oder den Resharper verwenden)</p>
+<pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Jasmine Spec Runner&lt;/title&gt;
+
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;lib/jasmine-1.3.1/jasmine.css&quot; /&gt;
+    &lt;script src=&quot;lib/jasmine-1.3.1/jasmine.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;lib/jasmine-1.3.1/jasmine-html.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- include source files here... --&gt;
+    &lt;script src=&quot;src/Player.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;src/Song.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- include spec files here... --&gt;
+    &lt;script src=&quot;spec/SpecHelper.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;spec/PlayerSpec.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script&gt;
+
+        (function () {
+
+            var htmlReporter = new jasmine.HtmlReporter();
+            var jasmineEnv = jasmine.getEnv();
+
+            jasmineEnv.addReporter(htmlReporter);
+            jasmineEnv.specFilter = function (spec) {
+                return htmlReporter.specFilter(spec);
+            };
+
+            var currentWindowOnload = window.onload;
+
+            window.onload = function () {
+                if (currentWindowOnload) { currentWindowOnload(); }
+                jasmineEnv.execute();
+            };
+        })();
+    &lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Die Datei und die Tests finden Sie im <a href="./jasmine">&quot;jasmine&quot; Ordner</a>.</p>
+
 </body>
 </html>
 <!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
