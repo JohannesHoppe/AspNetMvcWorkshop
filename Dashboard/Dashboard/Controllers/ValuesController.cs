@@ -4,21 +4,31 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Dashboard.Models;
 
 namespace Dashboard.Controllers
 {
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public IEnumerable<Gutachter> Get()
         {
-            return new string[] { "value1", "value2" };
+            var hans = new Gutachter
+                       {
+                           Vorname = "Hans",
+                           Nachname = "Müller"
+                       };
+
+            return new[] { hans };
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public dynamic Get(int id)
         {
-            return "value";
+            return new
+                   {
+                       Test = DateTime.Now
+                   };
         }
 
         // POST api/values
