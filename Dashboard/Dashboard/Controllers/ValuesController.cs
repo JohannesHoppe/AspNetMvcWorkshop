@@ -19,6 +19,10 @@ namespace Dashboard.Controllers
                            Nachname = "Müller"
                        };
 
+            var context = new DashboardContext();
+            context.Gutachter.Add(hans);
+            context.SaveChanges();
+
             return new[] { hans };
         }
 
