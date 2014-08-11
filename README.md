@@ -27,7 +27,7 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 1. Best Practices – häufige Fehler vermeiden, bewährtes verwenden
     a. Vermeiden von globals, eval, etc. 
     b. Modularer Code
-2. Schnelleinstieg require.js
+2. Require.js  und modularer Code
 3. Refactoring eines bestehenden JavaScript-Codes – Ziel: ein Modul
 4. Testing des Moduls mit Jasmine
 5. Daten holen per Ajax
