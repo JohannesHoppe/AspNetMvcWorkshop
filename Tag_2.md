@@ -22,6 +22,10 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 https://github.com/JohannesHoppe/DeveloperMediaDemo/blob/master/Documentation/04.%20ASP.NET%20Web%20API%20Webinar.md#level3
 
 
+Tools:
+- Resharper: Unit Test ausführen
+- JsHint (Qualitätsicherung)
+
 <a name="bestpractices"></a>
 ## 1. JavaScript Best Practices
 
