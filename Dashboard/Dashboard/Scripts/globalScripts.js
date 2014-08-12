@@ -1,8 +1,10 @@
-﻿(function() {
+﻿var myFirstModule = (function() {
 
-    var init = function () {
+    var test = "adasdased";
 
-        var freightCount = getFreightValue();
+    var _init = function () {
+
+        var freightCount = _getFreightValue();
 
         $('#grid').show();
 
@@ -52,7 +54,7 @@
         });
     };
 
-    var getFreightValue = function () {
+    var _getFreightValue = function () {
 
         var value = $('#freight').val();
         var returnValue = parseInt(value);
@@ -63,12 +65,17 @@
 
         return returnValue;
     }
+    
+    var start = function (selector) {
+        $(selector).click(_init);
+    }
 
-    $('#start').click(init);
-
+    return {
+        start: start,
+        test: test
+    };
 
 })();
 
-
-
+myFirstModule.start('#start');
 
