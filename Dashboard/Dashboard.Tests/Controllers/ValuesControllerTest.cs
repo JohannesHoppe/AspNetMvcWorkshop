@@ -10,6 +10,7 @@ using Dashboard.Controllers;
 
 namespace Dashboard.Tests.Controllers
 {
+    [Ignore]
     [TestClass]
     public class ValuesControllerTest
     {
