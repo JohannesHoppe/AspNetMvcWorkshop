@@ -32,9 +32,9 @@ namespace Dashboard.Tests
                                  new Gutachter { Id = 3, Vorname = "Inge" }
                              };
 
-            var mockedContext = new Mock<IDashboardContext>();
-            mockedContext.Setup(x => x.Gutachter).Returns(_inMemoryDbSet);
-            _sut = new GutachterRepository(mockedContext.Object);
+            _mockedContext = new Mock<IDashboardContext>();
+            _mockedContext.Setup(x => x.Gutachter).Returns(_inMemoryDbSet);
+            _sut = new GutachterRepository(_mockedContext.Object);
         }
 
         [TestCase("ReadAll returns all values", Result = 3)]
@@ -55,7 +55,7 @@ namespace Dashboard.Tests
         {
             Gutachter result = _sut.Read(2);
             Assert.That(result.Id, Is.EqualTo(2));
-            Assert.That(result.Nachname, Is.EqualTo("Klaus"));
+            Assert.That(result.Vorname, Is.EqualTo("Klaus"));
         }
 
         [Test]
