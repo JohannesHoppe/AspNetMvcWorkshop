@@ -22,14 +22,14 @@ namespace Dashboard.Tests
         [SetUp]
         public void Init()
         {
-            var klaus = new Gutachter {Vorname = "Klaus"};
+            var klaus = new Gutachter { Id= 2, Vorname = "Klaus"};
             klaus.Gutachten.Add(new Gutachten());
 
             _inMemoryDbSet = new InMemoryDbSet<Gutachter>(true)
                              {
-                                 new Gutachter { Vorname = "Hans" },
+                                 new Gutachter { Id = 1, Vorname = "Hans" },
                                  klaus,
-                                 new Gutachter { Vorname = "Inge" }
+                                 new Gutachter { Id = 3, Vorname = "Inge" }
                              };
 
             var mockedContext = new Mock<IDashboardContext>();
