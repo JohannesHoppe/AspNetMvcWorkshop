@@ -26,6 +26,13 @@ Tools:
 - Resharper: Unit Test ausführen
 - JsHint (Qualitätsicherung)
 
+
+A great book is ["JavaScript Patterns"](http://www.amazon.com/dp/0596806752) from Stoyan Stefanov. It explains in detail the required patterns for a solid JavaScript-driven website! 
+
+[![Book cover](https://raw.github.com/JohannesHoppe/DeveloperMediaDemo/master/Documentation/images/06_01_javascript_patterns.png)](http://shop.oreilly.com/product/9783897215986.do)
+
+Another great one is [Learning JavaScript Design Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/) from Addy Osmani.
+ 
 <a name="bestpractices"></a>
 ## 1. JavaScript Best Practices
 
