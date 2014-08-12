@@ -5,11 +5,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.OData;
+using System.Web.Http.OData.Query;
 using Dashboard.Models;
 
 namespace Dashboard.Controllers
 {
-    public class GutachterController : ApiController
+    public class GutachterController : ODataController
     {
         private readonly IGutachterRepository _repository;
 
@@ -19,7 +20,7 @@ namespace Dashboard.Controllers
         }
 
         // GET api/values
-        [EnableQuery]
+        [Queryable(AllowedQueryOptions=AllowedQueryOptions.All)]
         public IQueryable<Gutachter> Get()
         {
             return _repository.ReadAll().AsQueryable();
