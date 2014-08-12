@@ -61,10 +61,9 @@ namespace Dashboard.Tests
         [Test]
         public void Create_adds_an_item_to_db()
         {
-            int result =  _sut.Create("Hans", "Hanson", "test@test.de");
+            _sut.Create("Hans", "Hanson", "test@test.de");
 
             Assert.That(_inMemoryDbSet.Count(), Is.EqualTo(4), "Create should add an item to DB");
-            Assert.That(result, Is.EqualTo(4), "Create should return a new incremented id");
         }
 
         [Test]
