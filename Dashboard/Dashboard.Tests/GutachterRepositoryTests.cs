@@ -37,7 +37,7 @@ namespace Dashboard.Tests
             _sut = new GutachterRepository(_mockedContext.Object);
         }
 
-        [TestCase("ReadAll returns all values", Result = 3)]
+        [TestCase(TestName = "ReadAll returns all values", Result = 3)]
         public int ReadAll()
         {
             return _sut.ReadAll().Count();
