@@ -5,6 +5,7 @@ namespace Dashboard.Models
 {
     public class GutachterRepository : IGutachterRepository
     {
+        private IDashboardContext _context;
 
         public GutachterRepository(IDashboardContext context)
         {
@@ -39,8 +40,6 @@ namespace Dashboard.Models
         public void Update(Gutachter gutachter)
         {
             var value = Read(gutachter.Id);
-
-
 
             if (value != null)
             {
