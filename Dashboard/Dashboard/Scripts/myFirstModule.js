@@ -1,8 +1,8 @@
-﻿var myFirstModule = (function ($) {
+﻿define(['jquery', 'kendo'], function ($) {
 
     var test = "adasdased";
 
-    var _init = function () {
+    var _init = function() {
 
         var freightCount = _getFreightValue();
 
@@ -34,10 +34,11 @@
             filterable: true,
             sortable: true,
             pageable: true,
-            columns: [{
-                field: "OrderID",
-                filterable: false
-            },
+            columns: [
+                {
+                    field: "OrderID",
+                    filterable: false
+                },
                 "Freight",
                 {
                     field: "OrderDate",
@@ -54,7 +55,7 @@
         });
     };
 
-    var _getFreightValue = function () {
+    var _getFreightValue = function() {
 
         var value = $('#freight').val();
         var returnValue = parseInt(value);
@@ -65,8 +66,8 @@
 
         return returnValue;
     }
-    
-    var start = function (selector) {
+
+    var start = function(selector) {
         $(selector).click(_init);
     }
 
@@ -75,7 +76,7 @@
         test: test
     };
 
-})(window.jQuery);
+});
 
-myFirstModule.start('#start');
+
 

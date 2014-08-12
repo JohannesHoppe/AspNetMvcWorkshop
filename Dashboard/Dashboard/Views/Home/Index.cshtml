@@ -11,3 +11,12 @@
 <input id="freight" type="text" />
 <button id="start">Show Grid!</button>
 <div id="grid" style="display: none; margin-top: 10px;">TEST</div>
+
+
+@section scripts {
+<script>    
+    require(['myFirstModule'], function(myFirstModule) {
+        myFirstModule.start('#start');
+    });
+</script>
+}
