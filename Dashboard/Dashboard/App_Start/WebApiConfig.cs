@@ -22,8 +22,8 @@ namespace Dashboard
             );
 
             // removes Xml Formater from WebApi for easy debugging
-            MediaTypeFormatterCollection formatters = GlobalConfiguration.Configuration.Formatters;
-            formatters.Remove(formatters.XmlFormatter);
+            //MediaTypeFormatterCollection formatters = GlobalConfiguration.Configuration.Formatters;
+            //formatters.Remove(formatters.XmlFormatter);
 
             #if DEBUG
             // more readable output
@@ -31,7 +31,9 @@ namespace Dashboard
             #endif 
 
             // handle self referencing loops
-            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; 
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            config.EnableQuerySupport();
         }
     }
 }

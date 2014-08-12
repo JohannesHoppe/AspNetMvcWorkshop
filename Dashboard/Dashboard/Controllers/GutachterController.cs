@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.OData;
 using Dashboard.Models;
 
 namespace Dashboard.Controllers
@@ -18,9 +19,10 @@ namespace Dashboard.Controllers
         }
 
         // GET api/values
-        public IEnumerable<Gutachter> Get()
+        [EnableQuery]
+        public IQueryable<Gutachter> Get()
         {
-            return _repository.ReadAll();
+            return _repository.ReadAll().AsQueryable();
         }
 
         // GET api/values/5
