@@ -18,7 +18,7 @@ namespace Dashboard.Tests.Controllers
         public void Get()
         {
             //// Arrange
-            //ValuesController controller = new ValuesController();
+            //GutachterController controller = new GutachterController();
 
             //// Act
             //IEnumerable<string> result = controller.Get();
@@ -33,50 +33,50 @@ namespace Dashboard.Tests.Controllers
         [TestMethod]
         public void GetById()
         {
-            // Arrange
-            ValuesController controller = new ValuesController();
+            //// Arrange
+            //GutachterController controller = new GutachterController();
 
-            // Act
-            string result = controller.Get(5);
+            //// Act
+            //string result = controller.Get(5);
 
-            // Assert
-            Assert.AreEqual("value", result);
+            //// Assert
+            //Assert.AreEqual("value", result);
         }
 
         [TestMethod]
         public void Post()
         {
-            // Arrange
-            ValuesController controller = new ValuesController();
+            //// Arrange
+            //GutachterController controller = new GutachterController();
 
-            // Act
-            controller.Post("value");
+            //// Act
+            //controller.Post("value");
 
-            // Assert
+            //// Assert
         }
 
         [TestMethod]
         public void Put()
         {
-            // Arrange
-            ValuesController controller = new ValuesController();
+            //// Arrange
+            //GutachterController controller = new GutachterController();
 
-            // Act
-            controller.Put(5, "value");
+            //// Act
+            //controller.Put(5, "value");
 
-            // Assert
+            //// Assert
         }
 
         [TestMethod]
         public void Delete()
         {
-            // Arrange
-            ValuesController controller = new ValuesController();
+            //// Arrange
+            //GutachterController controller = new GutachterController();
 
-            // Act
-            controller.Delete(5);
+            //// Act
+            //controller.Delete(5);
 
-            // Assert
+            //// Assert
         }
     }
 }

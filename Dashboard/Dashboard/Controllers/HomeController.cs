@@ -9,13 +9,28 @@ namespace Dashboard.Controllers
 {
     public class HomeController : Controller
     {
+        private IGutachterRepository _repository;
+
+        public HomeController(IGutachterRepository repository)
+        {
+            _repository = repository;
+        }
+
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
 
-            new Gutachter() {Id = -777, Vorname = "1231"};
+            Gutachter gutachter = _repository.Read(1);
 
-            return View();
+            return View(
+
+                new
+                {
+                    Gutachter = gutachter,
+                    HelloWorld = "Hello World"
+                }.ToExpando()
+                
+            );
         }
     }
 }
