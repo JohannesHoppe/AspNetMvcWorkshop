@@ -1,6 +1,4 @@
-﻿var myNamespace = myNamespace || {};
-
-myNamespace.myFirstModule = (function () {
+﻿var myFirstModule = (function ($) {
 
     var test = "adasdased";
 
@@ -77,7 +75,7 @@ myNamespace.myFirstModule = (function () {
         test: test
     };
 
-})();
+})(window.jQuery);
 
-myNamespace.myFirstModule.start('#start');
+myFirstModule.start('#start');
 
