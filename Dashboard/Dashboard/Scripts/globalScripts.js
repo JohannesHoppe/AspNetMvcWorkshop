@@ -2,6 +2,8 @@
 
 $('#start').click(function() {
 
+    var freightCount = getFreightValue();
+
     $('#grid').show();
 
     $("#grid").kendoGrid({
@@ -24,8 +26,7 @@ $('#start').click(function() {
             pageSize: 20,
             serverPaging: true,
             serverFiltering: true,
-            serverSorting: true,
-            filter: { field: "Freight", operator: "gt", value: 100 }
+            filter: { field: "Freight", operator: "gt", value: freightCount }
         },
         height: 550,
         filterable: true,
@@ -49,7 +50,19 @@ $('#start').click(function() {
             }
         ]
     });
-
-
 });
+
+function getFreightValue() {
+
+    console.log('getFreightValue');
+
+    var value = $('#freight').val();
+    var returnValue = parseInt(value);
+
+    if (!returnValue) {
+        returnValue = 0;
+    }
+
+    return returnValue;
+}
 
