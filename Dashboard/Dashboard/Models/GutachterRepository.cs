@@ -4,6 +4,8 @@ namespace Dashboard.Models
 {
     public class GutachterRepository : IGutachterRepository
     {
+
+
         public GutachterRepository(IDashboardContext context)
         {
             
