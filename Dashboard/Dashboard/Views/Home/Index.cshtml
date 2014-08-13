@@ -16,6 +16,13 @@
 <script>    
     require(['myFirstModule', 'domReady!'], function (myFirstModule) {
         myFirstModule.start();
+
+
+        myFirstModule.events.on('userPressedTheButton', function (sender, message) {
+
+            alert(message);
+
+        });
     });
 </script>
 }

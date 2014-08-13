@@ -1,6 +1,6 @@
 ﻿define(['jquery', 'kendoGridModule'], function ($, kendoGrid) {
 
-// ReSharper disable InconsistentNaming
+    var events = $({});
 
     var _grid;
 
@@ -25,7 +25,11 @@
                     { field: "tolower(EMail)", operator: "contains", value: search }
                 ]
             });
+
+            events.trigger('userPressedTheButton', 'message!');
         });
+
+
     };
 
     var start = function() {
@@ -34,7 +38,8 @@
     };
 
     return {
-        start: start
+        start: start,
+        events: events
     };
 
     // ReSharper restore InconsistentNaming
