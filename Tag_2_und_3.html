@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Tag_2</title>
+<title>Tag_2_und_3</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 /* This file is deliberately empty */
@@ -20,8 +20,8 @@
 </head>
 <body>
 <h1 id="dreit-giger-asp-net-mvc-workshop">Dreitägiger ASP.NET MVC Workshop</h1>
-<p>Ihr Trainer: <a href="http://www.haushoppe-its.de">Johannes Hoppe</a></p>
-<h2 id="tag-2-agenda">Tag 2 - Agenda</h2>
+<p>Ihr Trainer: <a href="http://www.haushoppe-its.de">Johannes Hoppe</a> von <a href="http://grossweber.com/">Grossweber</a></p>
+<h2 id="tag-2-und-3-agenda">Tag 2 und 3 - Agenda</h2>
 <ol>
 <li><a href="#bestpractices">JavaScript Best Practices – häufige Fehler vermeiden, bewährtes verwenden</a><br> a. Vermeiden von globals, eval, etc.<br> b. Modularer Code</li>
 <li><a href="#require">Require.js  und modularer Code</a><ol>
@@ -36,20 +36,14 @@
 <li><a href="#jasmine">Testing des Moduls mit Jasmine</a></li>
 <li>Daten holen per Ajax</li>
 <li><a href="#XSS">Security: Besprechung Cross-Site-Scripting</a></li>
+<li>Crash-Kurs Kendo UI</li>
+<li>Deklarativer Ansatz (data-Attribute)</li>
+<li>Refactoring von bestehendem Code</li>
+<li><a href="#extra">Ergänzungen (Zusätzliche Infos während des Trainings)</a></li>
 </ol>
-<h2 id="rest">REST</h2>
-<p><a href="https://github.com/JohannesHoppe/DeveloperMediaDemo/blob/master/Documentation/04.%20ASP.NET%20Web%20API%20Webinar.md#level3">https://github.com/JohannesHoppe/DeveloperMediaDemo/blob/master/Documentation/04.%20ASP.NET%20Web%20API%20Webinar.md#level3</a></p>
-<p>Tools:</p>
-<ul>
-<li>Resharper: Unit Test ausführen</li>
-<li>JsHint (Qualitätsicherung)</li>
-</ul>
-<p>A great book is <a href="http://www.amazon.com/dp/0596806752">&quot;JavaScript Patterns&quot;</a> from Stoyan Stefanov. It explains in detail the required patterns for a solid JavaScript-driven website! </p>
-<p><a href="http://shop.oreilly.com/product/9783897215986.do"><img src="https://raw.github.com/JohannesHoppe/DeveloperMediaDemo/master/Documentation/images/06_01_javascript_patterns.png" alt="Book cover"></a></p>
-<p>Another great one is <a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/">Learning JavaScript Design Patterns</a> from Addy Osmani.</p>
 <p><a name="bestpractices"></a></p>
 <h2 id="1-javascript-best-practices">1. JavaScript Best Practices</h2>
-<p><a href="http://johanneshoppe.github.com/JsBestPractices"><img src="images/best_practices_logo.png" alt="Logo"></a></p>
+<p><a href="http://johanneshoppe.github.com/JsBestPractices"><img src="images/best_practices_logo.png" alt="Logo"></a><br><a href="http://johanneshoppe.github.com/JsBestPractices">Link</a></p>
 <p><a name="require"></a></p>
 <h2 id="2-require-js-und-modularer-code">2. Require.js und modularer Code</h2>
 <p>Javascript framekworks need some glue to fit together. Require.js is exactly that glue. Using a modular script loader like require.js will improve the speed and quality of your code. Lets see how.</p>
@@ -190,11 +184,27 @@
 &lt;body&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-<p>Die Datei und die Tests finden Sie im <a href="./jasmine">&quot;jasmine&quot; Ordner</a>.</p>
+<p>Die Datei und die Tests finden Sie im <a href="Dashboard/Dashboard/Scripts/jasmine/jasmine">&quot;jasmine&quot; Ordner</a>.</p>
 <p><a name="XSS"></a></p>
 <h2 id="6-security-besprechung-cross-site-scripting">6. Security: Besprechung Cross-Site-Scripting</h2>
-<p><a href="http://johanneshoppe.github.io/HTML5Security/"><img src="images/
-security_logo.png" alt="Logo"></a></p>
+<p><a href="http://johanneshoppe.github.io/HTML5Security/"><img src="images/security_logo.png" alt="Logo"></a><br><a href="http://johanneshoppe.github.io/HTML5Security/">Link</a></p>
+<p><a name="extra"></a></p>
+<h2 id="10-erg-nzungen-zus-tzliche-infos-w-hrend-des-trainings-">10. Ergänzungen (Zusätzliche Infos während des Trainings)</h2>
+<h3 id="rest">REST</h3>
+<p><a href="https://github.com/JohannesHoppe/DeveloperMediaDemo/blob/master/Documentation/04.%20ASP.NET%20Web%20API%20Webinar.md#level3">Doku zum Webinar: REST und Hypermedia</a></p>
+<h3 id="tools">Tools</h3>
+<ul>
+<li>Resharper: Unit Test ausführen</li>
+<li>JsHint (Qualitätsicherung)</li>
+<li><a href="http://karma-runner.github.io">Karma Testrunner</a></li>
+</ul>
+<h3 id="js-books">JS Books</h3>
+<p><a href="http://www.amazon.com/dp/0596806752"><img src="https://raw.github.com/JohannesHoppe/DeveloperMediaDemo/master/Documentation/images/06_01_javascript_patterns.png" alt="Book cover"></a><br>A great book is <a href="http://www.amazon.com/dp/0596806752">&quot;JavaScript Patterns&quot;</a> from Stoyan Stefanov. It explains in detail the required patterns for a solid JavaScript-driven website! </p>
+<p><a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/"><img src="images/book_essentialjsdesignpatterns.png" alt="Book cover"></a><br>Another great one is <a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/">Learning JavaScript Design Patterns</a> from Addy Osmani.</p>
+<h3 id="kendo-ui">Kendo UI</h3>
+<p>How To Use Kendo UI Declarative Initialization<br><a href="http://docs.telerik.com/kendo-ui/howto/declarative_initialization">http://docs.telerik.com/kendo-ui/howto/declarative_initialization</a><br><a href="http://www.telerik.com/forums/declarative-initialization-of-the-kendo-ui-grid">http://www.telerik.com/forums/declarative-initialization-of-the-kendo-ui-grid</a></p>
+<h3 id="lokalisierung">Lokalisierung</h3>
+<p>Resx Lokalisierungen (sowie T4MVC Routen und alles andere) von .NET nach JavaScript bringen:<br><a href="http://blog.mariusschulz.com/2013/07/07/generating-external-javascript-files-using-partial-razor-views">http://blog.mariusschulz.com/2013/07/07/generating-external-javascript-files-using-partial-razor-views</a></p>
 
 </body>
 </html>

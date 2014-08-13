@@ -1,5 +1,5 @@
 # Dreitägiger ASP.NET MVC Workshop
-Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
+Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de) von [Grossweber](http://grossweber.com/)
 
 ## Fragen zur Vorbereitung
 
@@ -9,7 +9,7 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 
 ## Agenda
 
-### 1. Tag – C#/.NET / ASP.NET MVC
+### [1. Tag – C#/.NET / ASP.NET MVC](Tag_1.md)
 1. Grundlagen, Besprechung der Fragen zur Vorbereitung
 2. Anlegen eines ASP.NET Web API Projekts (Routing, Bundling)
 3. Anlegen von DTOs / POCOs (Geschäftsobjekte)
@@ -23,7 +23,7 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 [» Weiter zu Tag 1](Tag_1.md)
 
 
-### 2. Tag – JavaScript
+### [2. Tag – JavaScript](Tag_2_und_3.md)
 1. Best Practices – häufige Fehler vermeiden, bewährtes verwenden
     a. Vermeiden von globals, eval, etc. 
     b. Modularer Code
@@ -33,17 +33,22 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 5. Daten holen per Ajax
 6. Security: Besprechung Cross-Site-Scripting
 
-[» Weiter zu Tag 2](Tag_2.md)
+[» Weiter zu Tag 2 und 3](Tag_2_und_3.md)
 
 
-### 3. Tag – Kendo UI
+### [3. Tag – Kendo UI](Tag_2_und_3.md)
 1. Crash-Kurs Kendo UI
 2. Deklarativer Ansatz (data-Attribute)
-3. Integration in andere Frameworks (AngularJS)
-3. Refactoring von bestehendem Code (Einbau von Kendo UI Standard-Controls an ausgewählten Stellen)
+3. Refactoring von bestehendem Code
+
+[» Weiter zu Tag 2 und 3](Tag_2_und_3.md)
 
 ## Vorraussetzungen
 
 - Laptop / Arbeitsplatz pro Teilnehmer
 - Visual Studio 2013
 - Chrome
+
+## Quelltext
+
+###[» Download als .zip](https://github.com/JohannesHoppe/AspNetMvcWorkshop/archive/master.zip)

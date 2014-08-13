@@ -19,6 +19,9 @@ namespace Dashboard.Controllers
             _repository = repository;
         }
 
+
+
+
         // GET api/values
         [Queryable(AllowedQueryOptions=AllowedQueryOptions.All)]
         public IQueryable<Gutachter> Get()
@@ -54,6 +57,14 @@ namespace Dashboard.Controllers
         public void Delete(int id)
         {
             _repository.Delete(id);
+        }
+
+
+        // GET api/values
+        [Route("/api/GutachterForDropdown")]
+        public IEnumerable<string> GetGutachterForDropdown()
+        {
+            return _repository.ReadAll().Select(x => x.Vorname);
         }
     }
 }

@@ -1,5 +1,5 @@
 # Dreitägiger ASP.NET MVC Workshop
-Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
+Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de) von [Grossweber](http://grossweber.com/)
 
 ## Tag 1 - Agenda
 

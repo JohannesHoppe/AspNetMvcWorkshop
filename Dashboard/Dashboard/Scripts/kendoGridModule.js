@@ -42,16 +42,16 @@
                     filterable: false
                 }, {
                     field: "Vorname",
-                    title: "Vorname",
-                    filterable: false
+                    title: "Vorname"
+                    //filterable: false
                 }, {
                     field: "Nachname",
-                    title: "Nachname",
-                    filterable: false
+                    title: "Nachname"
+                    //filterable: false
                 }, {
                     field: "EMail",
-                    title: "EMail",
-                    filterable: false
+                    title: "EMail"
+                    //filterable: false
                 }
             ]
         }).data("kendoGrid");

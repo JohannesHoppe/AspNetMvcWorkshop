@@ -1,7 +1,7 @@
 # Dreitägiger ASP.NET MVC Workshop
-Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
+Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de) von [Grossweber](http://grossweber.com/)
 
-## Tag 2 - Agenda
+## Tag 2 und 3 - Agenda
 
 1. [JavaScript Best Practices – häufige Fehler vermeiden, bewährtes verwenden](#bestpractices)
     a. Vermeiden von globals, eval, etc. 
@@ -16,27 +16,20 @@ Ihr Trainer: [Johannes Hoppe](http://www.haushoppe-its.de)
 4. [Testing des Moduls mit Jasmine](#jasmine)
 5. Daten holen per Ajax
 6. [Security: Besprechung Cross-Site-Scripting](#XSS)
+7. Crash-Kurs Kendo UI
+8. Deklarativer Ansatz (data-Attribute)
+9. Refactoring von bestehendem Code
+10. [Ergänzungen (Zusätzliche Infos während des Trainings)](#extra)
 
 
-## REST
-https://github.com/JohannesHoppe/DeveloperMediaDemo/blob/master/Documentation/04.%20ASP.NET%20Web%20API%20Webinar.md#level3
 
 
-Tools:
-- Resharper: Unit Test ausführen
-- JsHint (Qualitätsicherung)
-
-
-A great book is ["JavaScript Patterns"](http://www.amazon.com/dp/0596806752) from Stoyan Stefanov. It explains in detail the required patterns for a solid JavaScript-driven website! 
-
-[![Book cover](https://raw.github.com/JohannesHoppe/DeveloperMediaDemo/master/Documentation/images/06_01_javascript_patterns.png)](http://shop.oreilly.com/product/9783897215986.do)
-
-Another great one is [Learning JavaScript Design Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/) from Addy Osmani.
- 
 <a name="bestpractices"></a>
 ## 1. JavaScript Best Practices
 
 [![Logo](images/best_practices_logo.png)](http://johanneshoppe.github.com/JsBestPractices)
+[Link](http://johanneshoppe.github.com/JsBestPractices)
+Inhalt: Best Practices, Modularer Code und Unit-Testing
 
 
 <a name="require"></a>
@@ -226,14 +219,48 @@ Wir verwenden Jasmine, das bekannteste JavaScript Unit-Test Framework. Folgende 
 </html>
 ```
 
-Die Datei und die Tests finden Sie im ["jasmine" Ordner](./jasmine).
+Die Datei und die Tests finden Sie im ["jasmine" Ordner](Dashboard/Dashboard/Scripts/jasmine/jasmine).
 
 
 <a name="XSS"></a>
 ## 6. Security: Besprechung Cross-Site-Scripting
 
+[![Logo](images/security_logo.png)](http://johanneshoppe.github.io/HTML5Security/)
+[Link](http://johanneshoppe.github.io/HTML5Security/)
+Inhalt: Ausgewählte Sicherheitslücken
 
-[![Logo](images/
-security_logo.png)](http://johanneshoppe.github.io/HTML5Security/)
+
+<a name="extra"></a>
+## 10. Ergänzungen (Zusätzliche Infos während des Trainings)
+
+
+### REST
+[Doku zum Webinar: REST und Hypermedia](https://github.com/JohannesHoppe/DeveloperMediaDemo/blob/master/Documentation/04.%20ASP.NET%20Web%20API%20Webinar.md#level3)
+
+
+
+### Tools
+- Resharper: Unit Test ausführen
+- JsHint (Qualitätsicherung)
+- [Karma Testrunner](http://karma-runner.github.io)
+
+### JS Books
+
+
+[![Book cover](https://raw.github.com/JohannesHoppe/DeveloperMediaDemo/master/Documentation/images/06_01_javascript_patterns.png)](http://www.amazon.com/dp/0596806752)
+A great book is ["JavaScript Patterns"](http://www.amazon.com/dp/0596806752) from Stoyan Stefanov. It explains in detail the required patterns for a solid JavaScript-driven website! 
+
+[![Book cover](images/book_essentialjsdesignpatterns.png)](http://addyosmani.com/resources/essentialjsdesignpatterns/book/)
+Another great one is [Learning JavaScript Design Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/) from Addy Osmani.
+
+### Kendo UI
+
+How To Use Kendo UI Declarative Initialization
+http://docs.telerik.com/kendo-ui/howto/declarative_initialization
+http://www.telerik.com/forums/declarative-initialization-of-the-kendo-ui-grid
+
+### Lokalisierung
+Resx Lokalisierungen (sowie T4MVC Routen und alles andere) von .NET nach JavaScript bringen:
+http://blog.mariusschulz.com/2013/07/07/generating-external-javascript-files-using-partial-razor-views
 
 
